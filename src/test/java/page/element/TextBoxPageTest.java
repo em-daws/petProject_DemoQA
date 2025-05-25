@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import practice.page.CustomPageFactory;
 import practice.page.element.TextBoxPage;
 
+import java.time.Duration;
+
 public class TextBoxPageTest {
 
     private TextBoxPage textBoxPage;
@@ -16,18 +18,27 @@ public class TextBoxPageTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = CustomPageFactory.getDriver();
+        //with Factory:
+//        driver = CustomPageFactory.getDriver();
+
+        //old way without Factory:
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
+
+        //використання implicitly вейтера для драйвера
+        //очікування завантаження сторінки
+        driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1L));
+
         //ChromeOptions options = new ChromeOptions(); //розглянути
         driver.get("https://demoqa.com/text-box");
-        textBoxPage = CustomPageFactory.getTextBoxPage();
 
+        //with Factory:
+//        textBoxPage = CustomPageFactory.getTextBoxPage();
         //with using generics:
         //textBoxPage = CustomPageFactory.getPage(TextBoxPage.class);
 
         //old way without Factory:
-        //driver = new ChromeDriver();
-        //textBoxPage = new TextBoxPage(driver);
+        textBoxPage = new TextBoxPage(driver);
     }
 
     @AfterMethod

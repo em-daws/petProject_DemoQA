@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import practice.page.element.TextBoxPage;
 
+//Factory використовуємо для створення об'єктів (наприклад, сторінок)
 public class CustomPageFactory {
     private static final WebDriver DRIVER = new ChromeDriver();
     private CustomPageFactory() {}

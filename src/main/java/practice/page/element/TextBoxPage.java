@@ -1,16 +1,27 @@
 package practice.page.element;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import practice.page.BasePage;
+import practice.page.ElementUtils;
 import practice.page.Path;
 
+import javax.swing.*;
+import java.time.Duration;
 import java.util.List;
 
 public class TextBoxPage extends BasePage {
+
+    private WebDriver driver;
+
     @FindBy(css = Path.TEXT_BOX_FULL_NAME)
     private WebElement fullNameField;
 
@@ -30,10 +41,12 @@ public class TextBoxPage extends BasePage {
     private WebElement output;
 
     //конструктор не потрібен, бо маємо CustomPageFactory
-//    public TextBoxPage(WebDriver driver) {
-//        //ініціалізуємо елементи, коли викликаємо їх
-//        PageFactory.initElements(driver, this);
-//    }
+    //upd: конструктор вернули лекція 21. Lazy init
+    public TextBoxPage(WebDriver driver) {
+        //ініціалізуємо елементи, коли викликаємо їх
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+    }
 
     public void enterFullName(String fullName) {
         fullNameField.clear();
@@ -46,7 +59,26 @@ public class TextBoxPage extends BasePage {
     }
 
     public void submit() {
-        submitBtn.click();
+        ElementUtils.clickElementWithScrolling(submitBtn, driver);
+
+//        //WebDriverWait extends FluentWait
+//        //chain responsibility pattern:
+//        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+//                .withTimeout(Duration.ofMillis(5000L))
+//                .pollingEvery(Duration.ofMillis(50L))
+//                .ignoring(ElementClickInterceptedException.class);
+//
+//        Actions actions = new Actions(driver);
+//
+//        wait.until(webDriver -> {
+//            actions.scrollByAmount(0, 30)
+//                    .perform();
+//            submitBtn.click();
+//            return true;
+//        });
+
+        //pay attention to:
+//        wait.until(ExpectedConditions.elementToBeClickable(submitBtn));
     }
 
     public String getOutputText() {
