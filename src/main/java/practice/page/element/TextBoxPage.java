@@ -3,30 +3,37 @@ package practice.page.element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import practice.page.BasePage;
 import practice.page.Path;
 
 import java.util.List;
 
-public class TextBoxPage {
+public class TextBoxPage extends BasePage {
+    @FindBy(css = Path.TEXT_BOX_FULL_NAME)
     private WebElement fullNameField;
+
+    @FindBy(css = Path.TEXT_BOX_EMAIL)
     private WebElement emailField;
+
+    @FindBy(css = Path.TEXT_BOX_CURRENT_ADDRESS)
     private WebElement currentAddressField;
+
+    @FindBy(css = Path.TEXT_BOX_PERMANENT_ADDRESS)
     private WebElement permanentAddressField;
+
+    @FindBy(css = Path.TEXT_BOX_SUBMIT_BUTTON)
     private WebElement submitBtn;
 
+    @FindBy(css = Path.OUTPUT)
     private WebElement output;
-//    private WebElement outputName;
 
-    public TextBoxPage(WebDriver driver) {
-        fullNameField = driver.findElement(By.cssSelector(Path.TEXT_BOX_FULL_NAME));
-        emailField = driver.findElement(By.cssSelector(Path.TEXT_BOX_EMAIL));
-        currentAddressField = driver.findElement(By.cssSelector(Path.TEXT_BOX_CURRENT_ADDRESS));
-        permanentAddressField = driver.findElement(By.cssSelector(Path.TEXT_BOX_PERMANENT_ADDRESS));
-        submitBtn = driver.findElement(By.cssSelector(Path.TEXT_BOX_SUBMIT_BUTTON));
-
-        output = driver.findElement(By.cssSelector(Path.OUTPUT));
-//        outputName = driver.findElement(By.cssSelector(Path.OUTPUT_NAME));
-    }
+    //конструктор не потрібен, бо маємо CustomPageFactory
+//    public TextBoxPage(WebDriver driver) {
+//        //ініціалізуємо елементи, коли викликаємо їх
+//        PageFactory.initElements(driver, this);
+//    }
 
     public void enterFullName(String fullName) {
         fullNameField.clear();

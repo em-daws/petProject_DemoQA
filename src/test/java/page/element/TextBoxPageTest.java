@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import practice.page.CustomPageFactory;
 import practice.page.element.TextBoxPage;
 
 public class TextBoxPageTest {
@@ -15,10 +16,18 @@ public class TextBoxPageTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = CustomPageFactory.getDriver();
         driver.manage().window().maximize();
+        //ChromeOptions options = new ChromeOptions(); //розглянути
         driver.get("https://demoqa.com/text-box");
-        textBoxPage = new TextBoxPage(driver);
+        textBoxPage = CustomPageFactory.getTextBoxPage();
+
+        //with using generics:
+        //textBoxPage = CustomPageFactory.getPage(TextBoxPage.class);
+
+        //old way without Factory:
+        //driver = new ChromeDriver();
+        //textBoxPage = new TextBoxPage(driver);
     }
 
     @AfterMethod
