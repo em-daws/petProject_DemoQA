@@ -6,29 +6,19 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import page.BaseTest;
 import practice.page.CustomPageFactory;
 import practice.page.element.TextBoxPage;
 
 import java.time.Duration;
 
-public class TextBoxPageTest {
+public class TextBoxPageTest extends BaseTest {
 
     private TextBoxPage textBoxPage;
-    private WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-        //with Factory:
-//        driver = CustomPageFactory.getDriver();
-
-        //old way without Factory:
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        //використання implicitly вейтера для драйвера
-        //очікування завантаження сторінки
-        driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1L));
-
+        super.setUp();
         //ChromeOptions options = new ChromeOptions(); //розглянути
         driver.get("https://demoqa.com/text-box");
 
@@ -44,8 +34,7 @@ public class TextBoxPageTest {
     @AfterMethod
     public void tearDown() {
         textBoxPage = null;
-        driver.quit();
-        driver = null;
+        super.tearDown();
     }
 
     @Test

@@ -20,7 +20,7 @@ import java.util.List;
 
 public class TextBoxPage extends BasePage {
 
-    private WebDriver driver;
+//    private WebDriver driver;
 
     @FindBy(css = Path.TEXT_BOX_FULL_NAME)
     private WebElement fullNameField;
@@ -43,8 +43,9 @@ public class TextBoxPage extends BasePage {
     //конструктор не потрібен, бо маємо CustomPageFactory
     //upd: конструктор вернули лекція 21. Lazy init
     public TextBoxPage(WebDriver driver) {
+        super(driver);
         //ініціалізуємо елементи, коли викликаємо їх
-        PageFactory.initElements(driver, this);
+//        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
