@@ -1,5 +1,6 @@
 package page.element;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -37,6 +38,7 @@ public class TextBoxPageTest extends BaseTest {
         super.tearDown();
     }
 
+    @Description("Allure description")
     @Test
     public void fullNameFieldTest() {
         String inputText = "Hanna";

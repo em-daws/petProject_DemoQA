@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite18" verbose="1">
+    <test name="HomeworkRegression18">
+        <packages>
+            <package name="page.element"/>
+        </packages>
+    </test>
+</suite>

@@ -1,5 +1,6 @@
 package practice.page.element;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
@@ -49,6 +50,7 @@ public class TextBoxPage extends BasePage {
         this.driver = driver;
     }
 
+    @Step("Fill email input(allure)")
     public void enterFullName(String fullName) {
         fullNameField.clear();
         fullNameField.sendKeys(fullName);
@@ -59,6 +61,7 @@ public class TextBoxPage extends BasePage {
         emailField.sendKeys(email);
     }
 
+    @Step("Submit step(allure)")
     public void submit() {
         ElementUtils.clickElementWithScrolling(submitBtn, driver);
 
